@@ -21,6 +21,7 @@ namespace APIServer.Controllers
 			_messageHasherService = messageHasherService ?? throw new ArgumentNullException(nameof(messageHasherService));
 			_messageRepo = messageRepo ?? throw new ArgumentNullException(nameof(messageRepo));
 		}
-
+		//methods
+		[HttpPost("send")] 
 	}
 }

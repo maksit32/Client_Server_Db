@@ -8,6 +8,7 @@ namespace APIServer.Domain.Services.Interfaces
 {
 	public interface IMessageHasherService
 	{
-
+		string Encrypt(string plainText);
+		string Decrypt(string cipherText);
 	}
 }
