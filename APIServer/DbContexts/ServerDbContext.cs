@@ -16,6 +16,10 @@ namespace APIServer.DbContexts
 			.WithMany(u => u.Messages)
 			.OnDelete(DeleteBehavior.Cascade);
 
+			modelBuilder.Entity<User>()
+				.HasIndex(u => u.Login)
+				.IsUnique();
+
 			base.OnModelCreating(modelBuilder);
 		}
 		public ServerDbContext(DbContextOptions<ServerDbContext> options) : base(options)

@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace APIServer.Domain.Repositories.Interfaces
 {
+	//общие для всех репозиториев методы
 	public interface IRepository<TEntity> where TEntity : IEntity
 	{
-
+		//Task<User?> GetUserByLoginAsync(string login, CancellationToken ct);
 	}
 }
