@@ -1,0 +1,14 @@
+﻿using APIServer.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace APIServer.Domain.Services.Interfaces
+{
+	public interface IMessageCreatorService
+	{
+		Message CreateMessage(string hashedText, User sender);
+	}
+}

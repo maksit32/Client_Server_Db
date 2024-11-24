@@ -85,7 +85,7 @@ namespace APIServer.Controllers
 				return BadRequest();
 			}
 		}
-		[HttpPost("update")]
+		[HttpPut("update")]
 		public async Task<ActionResult> Update([FromBody] UserDto user, CancellationToken ct)
 		{
 			try

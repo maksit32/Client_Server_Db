@@ -25,7 +25,7 @@ namespace APIServer.Repositories
 		public async Task<Message?> GetMessageByTextAsync(string hashedText, CancellationToken ct)
 		{
 			if (string.IsNullOrWhiteSpace(hashedText)) throw new ArgumentNullException(nameof(hashedText));
-			return await Messages.FirstOrDefaultAsync(m => m.Text == hashedText);
+			return await Messages.FirstOrDefaultAsync(m => m.HashedText == hashedText);
 		}
 
 		public async Task<List<Message>> GetAllMessagesAsync(CancellationToken ct)
@@ -40,11 +40,26 @@ namespace APIServer.Repositories
 			await _dbContext.SaveChangesAsync(ct);
 		}
 
+		public async Task UpdateMessageAsync(Message message, string newHashedText, CancellationToken ct)
+		{
+			if (message is null) throw new ArgumentNullException(nameof(message));
+			if(string.IsNullOrWhiteSpace(newHashedText)) throw new ArgumentNullException(nameof(newHashedText));
+
+			message.HashedText = newHashedText;
+			Messages.Update(message);
+			await _dbContext.SaveChangesAsync(ct);
+		}
+
+		public async Task DeleteMessageAsync(Message message, CancellationToken ct)
+		{
+			Messages.Remove(message);
+			await _dbContext.SaveChangesAsync(ct);
+		}
+
 		public async Task DeleteMessageAsync(string hashedText, CancellationToken ct)
 		{
 			var message = await GetMessageByTextAsync(hashedText, ct);
-			Messages.Remove(message);
-			await _dbContext.SaveChangesAsync(ct);
+			await DeleteMessageAsync(message, ct);
 		}
 	}
 }

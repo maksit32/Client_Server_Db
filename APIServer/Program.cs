@@ -79,8 +79,9 @@ namespace APIServer
 				builder.Services.AddScoped<IMessageRepository, MessageRepository>();
 
 				builder.Services.AddScoped<IUserValidationService, UserValidationService>();
-				builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
 				builder.Services.AddScoped<IUserCreatorService, UserCreatorService>();
+				builder.Services.AddScoped<IPasswordHasherService, PasswordHasherService>();
+				builder.Services.AddScoped<IMessageCreatorService, MessageCreatorService>();
 				builder.Services.AddScoped<IMessageHasherService, MessageHasherService>(provider =>
 						new MessageHasherService(builder.Configuration.GetSection("HasherKey").Value));
 
